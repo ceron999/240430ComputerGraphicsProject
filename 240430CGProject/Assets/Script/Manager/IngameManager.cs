@@ -1,18 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class IngameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField]
+    TextMeshProUGUI recordText;                 //현재 기록이 얼만큼인지 나타내는 변수
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }
