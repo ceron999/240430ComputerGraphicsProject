@@ -5,15 +5,15 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerInfo
 {
-    public int level;                       //ÇöÀç ·¹º§
-    public float exp;                       //ÇöÀç °æÇèÄ¡
-    public float maxExp;                    //ÇöÀç °æÇèÄ¡°¡ maxExp¸¦ ³Ñ¾î°¡¸é ´ÙÀ½ ·¹º§·Î ¾÷ÇÑ´Ù. 
+    public int level;                       //í˜„ì¬ ë ˆë²¨
+    public float exp;                       //í˜„ì¬ ê²½í—˜ì¹˜
+    public float maxExp;                    //í˜„ì¬ ê²½í—˜ì¹˜ê°€ maxExpë¥¼ ë„˜ì–´ê°€ë©´ ë‹¤ìŒ ë ˆë²¨ë¡œ ì—…í•œë‹¤. 
 
-    public float[] runningRecord;           //´Ş¸®±â ±â·Ï
+    public float[] runningRecord;           //ë‹¬ë¦¬ê¸° ê¸°ë¡
 
-    public int hpReinforcementCount;                //Ã¼·Â °­È­ È½¼ö 
-    public int attackDamageReinforcementCount;      //°ø°İ·Â °­È­ È½¼ö 
-    public int speedReinforcementCount;             //¼Óµµ °­È­ È½¼ö 
+    public int hpReinforcementCount;                //ì²´ë ¥ ê°•í™” íšŸìˆ˜ 
+    public int attackDamageReinforcementCount;      //ê³µê²©ë ¥ ê°•í™” íšŸìˆ˜ 
+    public int speedReinforcementCount;             //ì†ë„ ê°•í™” íšŸìˆ˜ 
 
     public PlayerInfo()
     {
@@ -23,7 +23,7 @@ public class PlayerInfo
 
         runningRecord = new float[3];
 
-        //»óÁ¡¿¡¼­ ±¸¸ÅÇÏÁö ¾ÊÀº »óÅÂ·Î ÃÊ±âÈ­
+        //ìƒì ì—ì„œ êµ¬ë§¤í•˜ì§€ ì•Šì€ ìƒíƒœë¡œ ì´ˆê¸°í™”
         hpReinforcementCount = 0;
         attackDamageReinforcementCount = 0;
         speedReinforcementCount = 0;

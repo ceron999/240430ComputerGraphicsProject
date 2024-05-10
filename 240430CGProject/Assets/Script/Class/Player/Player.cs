@@ -5,12 +5,12 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField]
-    PlayerStatus playerStatus;              //player°¡ °¡Áö°íÀÖ´Â Ingame Data
+    PlayerStatus playerStatus;              //playerê°€ ê°€ì§€ê³ ìˆëŠ” Ingame Data
     [SerializeField]
     Rigidbody playerRigid;
 
     //Stage Variables
-    bool isStageStart = false;              //stage°¡ 1ÃÊ µÚ¿¡ ½ÃÀÛÇÏ¹Ç·Î stage°¡ ½ÃÀÛÇÑ µÚ ÁÂ¿ì·Î ÀÌµ¿ °¡´ÉÇÏµµ·Ï ¼³Á¤ÇÏ´Â bool
+    bool isStageStart = false;              //stageê°€ 1ì´ˆ ë’¤ì— ì‹œì‘í•˜ë¯€ë¡œ stageê°€ ì‹œì‘í•œ ë’¤ ì¢Œìš°ë¡œ ì´ë™ ê°€ëŠ¥í•˜ë„ë¡ ì„¤ì •í•˜ëŠ” bool
 
     private void Start()
     {
@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
         MoveSide();
     }
 
-    //Àü¹æÀ¸·Î ÀÌµ¿ÇÏ±â ½ÃÀÛÇÏ´Â ÇÔ¼ö
+    //ì „ë°©ìœ¼ë¡œ ì´ë™í•˜ê¸° ì‹œì‘í•˜ëŠ” í•¨ìˆ˜
     void StartPlayerMove()
     {
         StartCoroutine(StartPlayerMoveCoroutine());
@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
     IEnumerator StartPlayerMoveCoroutine()
     {
         yield return new WaitForSeconds(1f);
-        isStageStart = true;                    //stage°¡ ½ÃÀÛµÇ¾úÀ¸¹Ç·Î ÁÂ¿ì·Î ÀÌµ¿ °¡´É
+        isStageStart = true;                    //stageê°€ ì‹œì‘ë˜ì—ˆìœ¼ë¯€ë¡œ ì¢Œìš°ë¡œ ì´ë™ ê°€ëŠ¥
 
         while (playerRigid.velocity.z <= playerStatus.maxForwardSpeed)
         {
@@ -43,13 +43,13 @@ public class Player : MonoBehaviour
         playerRigid.velocity = new Vector3(playerRigid.velocity.x, playerRigid.velocity.y, playerStatus.maxForwardSpeed);
     }
 
-    //ÁÂ¿ì·Î ÀÌµ¿ÇÏ´Â ÇÔ¼ö
+    //ì¢Œìš°ë¡œ ì´ë™í•˜ëŠ” í•¨ìˆ˜
     private void MoveSide()
     {
-        //Player°¡ ÀÌµ¿ÇÏ±â ½ÃÀÛÇÏ¸é ÁÂ¿ì·Î ÀÌµ¿ °¡´ÉÇÏµµ·Ï Á¶°ÇÀ» °ÉÀ½
+        //Playerê°€ ì´ë™í•˜ê¸° ì‹œì‘í•˜ë©´ ì¢Œìš°ë¡œ ì´ë™ ê°€ëŠ¥í•˜ë„ë¡ ì¡°ê±´ì„ ê±¸ìŒ
         if (isStageStart)
         {
-            //a¸¦ ´©¸£¸é ¿ŞÂÊÀ¸·Î ÀÌµ¿
+            //aë¥¼ ëˆ„ë¥´ë©´ ì™¼ìª½ìœ¼ë¡œ ì´ë™
             if (Input.GetKey(KeyCode.A))
             {
                 if (playerRigid.velocity.x > playerStatus.maxsideSpeed * (-1))
@@ -59,7 +59,7 @@ public class Player : MonoBehaviour
                 }
             }
 
-            //d¸¦ ´©¸£¸é ¿À¸¥ÂÊÀ¸·Î ÀÌµ¿
+            //dë¥¼ ëˆ„ë¥´ë©´ ì˜¤ë¥¸ìª½ìœ¼ë¡œ ì´ë™
             else if (Input.GetKey(KeyCode.D))
             {
                 if (playerRigid.velocity.x < playerStatus.maxsideSpeed)
@@ -69,7 +69,7 @@ public class Player : MonoBehaviour
                 }
             }
 
-            //¾Æ¹«°Íµµ ´©¸£°í ÀÖÁö ¾ÊÀ¸¸é ±×´ë·Î Á÷Áø
+            //ì•„ë¬´ê²ƒë„ ëˆ„ë¥´ê³  ìˆì§€ ì•Šìœ¼ë©´ ê·¸ëŒ€ë¡œ ì§ì§„
             else
             {
                 playerRigid.velocity = new Vector3(0, 0, playerStatus.maxForwardSpeed);

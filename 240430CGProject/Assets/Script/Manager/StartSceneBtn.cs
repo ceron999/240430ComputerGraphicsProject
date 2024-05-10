@@ -9,13 +9,13 @@ public class StartSceneBtn : MonoBehaviour
     [SerializeField]
     GameObject rankingUIParent;
 
-    //startBtnÀ» ´©¸£¸é IngameSceneÀ¸·Î ÀÌµ¿ÇÕ´Ï´Ù.
+    //startBtnì„ ëˆ„ë¥´ë©´ IngameSceneìœ¼ë¡œ ì´ë™í•©ë‹ˆë‹¤.
     public void ClickStartBtn()
     {
         SceneManager.LoadScene("IngameScene");
     }
 
-    //RankingBtnÀ» ´©¸£¸é Ranking UI¸¦ Åµ´Ï´Ù. 
+    //RankingBtnì„ ëˆ„ë¥´ë©´ Ranking UIë¥¼ í‚µë‹ˆë‹¤. 
     public void ClickRankingBtn()
     {
         rankingUIParent.SetActive(true);
@@ -26,13 +26,13 @@ public class StartSceneBtn : MonoBehaviour
         rankingUIParent.SetActive(false);
     }
 
-    //StoreBtnÀ» Å¬¸¯ÇÏ¸é StoreSceneÀ¸·Î ÀÌµ¿ÇÕ´Ï´Ù.
+    //StoreBtnì„ í´ë¦­í•˜ë©´ StoreSceneìœ¼ë¡œ ì´ë™í•©ë‹ˆë‹¤.
     public void ClickStoreBtn()
     {
         SceneManager.LoadScene("StoreScene");
     }
 
-    //ExitBtnÀ» ´©¸£¸é ÇÁ·Î±×·¥À» Á¾·áÇÕ´Ï´Ù.
+    //ExitBtnì„ ëˆ„ë¥´ë©´ í”„ë¡œê·¸ë¨ì„ ì¢…ë£Œí•©ë‹ˆë‹¤.
     public void ClickExitBtn()
     {
         Application.Quit();

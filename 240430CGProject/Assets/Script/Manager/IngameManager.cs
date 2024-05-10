@@ -7,7 +7,7 @@ using TMPro;
 public class IngameManager : MonoBehaviour
 {
     [SerializeField]
-    TextMeshProUGUI recordText;                 //ÇöÀç ±â·ÏÀÌ ¾ó¸¸Å­ÀÎÁö ³ªÅ¸³»´Â º¯¼ö
+    TextMeshProUGUI recordText;                 //í˜„ì¬ ê¸°ë¡ì´ ì–¼ë§Œí¼ì¸ì§€ ë‚˜íƒ€ë‚´ëŠ” ë³€ìˆ˜
 
 
 }

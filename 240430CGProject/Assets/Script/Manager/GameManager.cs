@@ -6,8 +6,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager gameManager;
 
-    public PlayerInfo playerInfo;           //playerÀÇ ±â·Ï, »óÁ¡¿¡¼­ µµ±¸¸¦ ¾ó¸¶³ª °­È­ÇÏ¿´´ÂÁö È®ÀÎ °¡´É
-    public float newRacord;                 //stage°¡ Á¾·áµÇ°í ±â·ÏµÈ µ¥ÀÌÅÍ·Î 3À§º¸´Ù ³ôÀº ¼ıÀÚ¸é ±³Ã¼ÇÒ ¿¹Á¤
+    public PlayerInfo playerInfo;           //playerì˜ ê¸°ë¡, ìƒì ì—ì„œ ë„êµ¬ë¥¼ ì–¼ë§ˆë‚˜ ê°•í™”í•˜ì˜€ëŠ”ì§€ í™•ì¸ ê°€ëŠ¥
+    public float newRacord;                 //stageê°€ ì¢…ë£Œë˜ê³  ê¸°ë¡ëœ ë°ì´í„°ë¡œ 3ìœ„ë³´ë‹¤ ë†’ì€ ìˆ«ìë©´ êµì²´í•  ì˜ˆì •
 
     void Awake()
     {

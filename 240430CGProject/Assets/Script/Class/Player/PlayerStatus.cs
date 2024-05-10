@@ -5,14 +5,14 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerStatus
 {
-    public float hp;        //ÇÃ·¹ÀÌ¾îÀÇ Ã¼·Â
+    public float hp;        //í”Œë ˆì´ì–´ì˜ ì²´ë ¥
 
-    public float forwardspeed;     //ÇÃ·¹ÀÌ¾î Àü¹æÀ¸·Î ´Ş¸®´Â ½ºÇÇµå
-    public float sidespeed;     //ÇÃ·¹ÀÌ¾î ÁÂ¿ì·Î ÀÌµ¿ÇÏ´Â ½ºÇÇµå
-    public float maxForwardSpeed;  //¸¸ÀÏ Àü¹æ ¼Óµµ°¡ ÀÏÁ¤ ¼öÄ¡ ÀÌ»ó ¿À¸£¸é ´õ ÀÌ»ó ´Ã¾î³ªÁö ¾Êµµ·Ï ¹æÁöÇÏ´Â ÇÔ¼ö
-    public float maxsideSpeed;  //¸¸ÀÏ ÁÂ¿ì·Î ÀÌµ¿ÇÏ´Â ¼Óµµ°¡ ÀÏÁ¤ ¼öÄ¡ ÀÌ»ó ¿À¸£¸é ´õ ÀÌ»ó ´Ã¾î³ªÁö ¾Êµµ·Ï ¹æÁöÇÏ´Â ÇÔ¼ö
+    public float forwardspeed;     //í”Œë ˆì´ì–´ ì „ë°©ìœ¼ë¡œ ë‹¬ë¦¬ëŠ” ìŠ¤í”¼ë“œ
+    public float sidespeed;     //í”Œë ˆì´ì–´ ì¢Œìš°ë¡œ ì´ë™í•˜ëŠ” ìŠ¤í”¼ë“œ
+    public float maxForwardSpeed;  //ë§Œì¼ ì „ë°© ì†ë„ê°€ ì¼ì • ìˆ˜ì¹˜ ì´ìƒ ì˜¤ë¥´ë©´ ë” ì´ìƒ ëŠ˜ì–´ë‚˜ì§€ ì•Šë„ë¡ ë°©ì§€í•˜ëŠ” í•¨ìˆ˜
+    public float maxsideSpeed;  //ë§Œì¼ ì¢Œìš°ë¡œ ì´ë™í•˜ëŠ” ì†ë„ê°€ ì¼ì • ìˆ˜ì¹˜ ì´ìƒ ì˜¤ë¥´ë©´ ë” ì´ìƒ ëŠ˜ì–´ë‚˜ì§€ ì•Šë„ë¡ ë°©ì§€í•˜ëŠ” í•¨ìˆ˜
 
-    public float attackDamage;  //ÇÃ·¹ÀÌ¾î °ø°İ·Â
+    public float attackDamage;  //í”Œë ˆì´ì–´ ê³µê²©ë ¥
 
     public PlayerStatus()
     {
