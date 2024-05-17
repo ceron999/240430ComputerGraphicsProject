@@ -97,12 +97,11 @@ public class StatManager : MonoBehaviour
     // 버튼 활성화 토글
     public void ToggleBtnActive()
     {
-        Debug.Log("실행!");
 
         // 스탯 포인트 0이면
         if (statPoint <= 0)
         {
-            Debug.Log("비활성화!");
+          
             // 버튼 비활성화
            foreach (GameObject button in optionButtons)
             {
@@ -115,7 +114,7 @@ public class StatManager : MonoBehaviour
         // 스탯 포인트 1 이상이면
         else 
         {
-            Debug.Log("활성화!");
+            
             // 버튼 활성화
             foreach (GameObject button in optionButtons)
             {
