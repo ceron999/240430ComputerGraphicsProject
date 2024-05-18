@@ -26,10 +26,10 @@ public class StartSceneBtn : MonoBehaviour
         rankingUIParent.SetActive(false);
     }
 
-    //StoreBtn을 클릭하면 StoreScene으로 이동합니다.
+    //StatBtn을 클릭하면 StoreScene으로 이동합니다.
     public void ClickStoreBtn()
     {
-        SceneManager.LoadScene("StoreScene");
+        SceneManager.LoadScene("StatScene");
     }
 
     //ExitBtn을 누르면 프로그램을 종료합니다.
