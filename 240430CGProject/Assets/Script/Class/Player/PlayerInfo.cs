@@ -17,7 +17,7 @@ public class PlayerInfo
 
     public PlayerInfo()
     {
-        level = 1;
+        level = 0;
         exp = 0;
         maxExp = 1000;
 

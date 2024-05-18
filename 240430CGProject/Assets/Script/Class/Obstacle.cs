@@ -7,8 +7,6 @@ public class Obstacle : MonoBehaviour
     private Rigidbody obstacleRigidbody;
     public float crushDmg = 2f; // obstacle damage TODO: change by level
     [SerializeField]
-    PlayerStatus playerStatus;              //player가 가지고있는 Ingame Data
-    [SerializeField]
     Rigidbody playerRigid;
 
 
@@ -16,7 +14,6 @@ public class Obstacle : MonoBehaviour
     void Start()
     {
         obstacleRigidbody = GetComponent<Rigidbody>();
-        playerStatus = new PlayerStatus();
     }
 
     void OnTriggerEnter(Collider other)
@@ -24,15 +21,11 @@ public class Obstacle : MonoBehaviour
         if(other.tag == "Player")
         {
             Player player = other.GetComponent<Player>();
-            if(player != null)
+
+            if (other.tag == "Player")
             {
-                playerStatus.hp -= crushDmg;
-                if(playerStatus.hp == 0)
-                {
-                    player.Die();
-                }
-                // 무적상태
-                // player.GodMode();
+                // 공격
+                player.GetDamaged(crushDmg);
             }
         }
     }

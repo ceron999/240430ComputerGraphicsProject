@@ -7,7 +7,6 @@ using UnityEngine.SceneManagement;
 public class RankingManager : MonoBehaviour
 {
     // 기록 불러오기 
-    PlayerInfo playerInfo;
     float[] runningRecordRanking;
 
     // 1, 2, 3등 텍스트 
@@ -18,7 +17,7 @@ public class RankingManager : MonoBehaviour
     private void Start()
     {
         // 1, 2, 3등 화면에 출력 
-        runningRecordRanking = playerInfo.runningRecord;
+        runningRecordRanking = GameManager.gameManager.playerInfo.runningRecord;
         firstPlace.text = runningRecordRanking[0].ToString() + "m";
         secondPlace.text = runningRecordRanking[1].ToString() + "m";
         thirdPlace.text = runningRecordRanking[2].ToString() + "m";

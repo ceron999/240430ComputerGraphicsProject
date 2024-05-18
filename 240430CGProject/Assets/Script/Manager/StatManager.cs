@@ -11,9 +11,6 @@ public class StatManager : MonoBehaviour
     // statManager 인스턴스 생성
     public static StatManager statManager;
 
-    // 여기 인스턴스 지정 안 돼서 오류 
-    PlayerInfo PlayerInfo;
-
     int currentHpLevel;
     int currentDamageLevel;
     int currentSpeedLevel;

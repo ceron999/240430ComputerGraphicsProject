@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField]
+    Transform playerTransform;
+
+    [SerializeField]
+    GameObject groundSpawner;
+    [SerializeField]
+    GameObject obstacleSpawner;
+    [SerializeField]
+    GameObject monsterSpawner;
+
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        GameObject groundSpawnerInstance = Instantiate(groundSpawner);
+        groundSpawnerInstance.transform.position = new Vector3(0, 0, 0);
     }
 }

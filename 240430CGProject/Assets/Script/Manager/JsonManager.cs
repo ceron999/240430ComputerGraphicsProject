@@ -7,7 +7,7 @@ using System.Text;
 
 public class JsonManager
 {
-    public T ResourceDataLoad<T>(string name)
+    static public T ResourceDataLoad<T>(string name)
     {
         T gameData;
 
@@ -24,15 +24,13 @@ public class JsonManager
         return gameData;
     }
 
-    public void SaveJson<T>(T saveData, string name)
+    static public void SaveJson<T>(T saveData, string name)
     {
         string jsonText;
-        //안드로이드에서의 저장 위치를 다르게 해주어야 한다
 
         string savePath = Application.dataPath;
         string appender = "/UserData/";
         string nameString = name + ".json";
-
 
         StringBuilder builder = new StringBuilder(savePath);
         builder.Append(appender);
@@ -43,7 +41,7 @@ public class JsonManager
 
         }
         builder.Append(nameString);
-
+        Debug.Log(builder.ToString());
         jsonText = JsonUtility.ToJson(saveData, true);
         //이러면은 일단 데이터가 텍스트로 변환이 된다
         //jsonUtility를 이용하여 data를 json형식의 text로 바꾸어준다
@@ -55,7 +53,7 @@ public class JsonManager
         fileStream.Close();
     }
 
-    public PlayerInfo LoadSaveData()
+    static public PlayerInfo LoadSaveData()
     {
         //이제 우리가 이전에 저장했던 데이터를 꺼내야한다
         PlayerInfo gameData;

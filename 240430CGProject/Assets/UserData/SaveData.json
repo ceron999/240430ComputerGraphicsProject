@@ -1,0 +1,13 @@
+{
+    "level": 0,
+    "exp": 161.0,
+    "maxExp": 1000.0,
+    "runningRecord": [
+        68.0,
+        37.0,
+        32.0
+    ],
+    "hpReinforcementCount": 0,
+    "attackDamageReinforcementCount": 0,
+    "speedReinforcementCount": 0
+}

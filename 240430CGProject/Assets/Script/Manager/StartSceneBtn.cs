@@ -18,16 +18,11 @@ public class StartSceneBtn : MonoBehaviour
     //RankingBtn을 누르면 Ranking UI를 킵니다. 
     public void ClickRankingBtn()
     {
-        rankingUIParent.SetActive(true);
-    }
-
-    public void ClickExitRankingUIBTN()
-    {
-        rankingUIParent.SetActive(false);
+        SceneManager.LoadScene("RankingScene");
     }
 
     //StatBtn을 클릭하면 StoreScene으로 이동합니다.
-    public void ClickStoreBtn()
+    public void ClickStatBtn()
     {
         SceneManager.LoadScene("StatScene");
     }

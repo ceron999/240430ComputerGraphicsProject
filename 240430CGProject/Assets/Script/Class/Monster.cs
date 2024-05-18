@@ -12,8 +12,6 @@ public class Monster : MonoBehaviour
     private Rigidbody monsterRigidbody;
 
     [SerializeField]
-    PlayerStatus playerStatus;              //player가 가지고있는 Ingame Data
-    [SerializeField]
     Rigidbody playerRigid;
     private Transform target; // 발사할 대상.
 
@@ -21,7 +19,6 @@ public class Monster : MonoBehaviour
     void Start()
     {
         monsterRigidbody = GetComponent<Rigidbody>();
-        playerStatus = new PlayerStatus();
 
         //TODO: Update에서 계속 플레이어 방향으로 수정.
         // monsterRigidbody.velocity = transform.forward * speed;
@@ -33,22 +30,19 @@ public class Monster : MonoBehaviour
         if(other.tag == "Player")
         {
             Player player = other.GetComponent<Player>();
+
             // 공격
-            playerStatus.hp -= crushDmg;
-           
-            if (playerStatus.hp == 0)
-            {
-                player.Die();
-            }
-            // 무적상태
-            // player.GodMode();
+            player.GetDamaged(crushDmg);
         }
 
         // 몬스터가 총에 맞았을 때
         if(other.tag == "Bullet")
         {
-            hp -= playerStatus.attackDamage;
-            if(hp == 0)
+            Destroy(other.gameObject);
+
+            hp -= other.GetComponent<Bullet>().attackDamage;
+
+            if(hp <= 0)
             {
                 Destroy(gameObject);
             }
