@@ -44,5 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 479eb375bf62e47f9b5ea8c8ffa2a37a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundPrefab: {fileID: 5140581348200781662, guid: a26226ade037b4391b2d240858f5b894, type: 3}
-  obstaclePrefab: {fileID: 5815811152271607387, guid: a4b289c6c8fdf49eab6469373c6dcc3e, type: 3}
+  groundPrefab: {fileID: 7604272542274909607, guid: 6cd3c1aee74bc474784e05eb776dcf88, type: 3}
+  obstaclePrefabs:
+  - {fileID: 5377983361093286603, guid: 686771255ea284878b8ef2e1117b2d73, type: 3}
+  - {fileID: 406209465541638755, guid: 3c050c62cb0b24934967d34cc24312d6, type: 3}
+  - {fileID: 3792733081194249724, guid: e31b13966f9ac421e98340676e897f75, type: 3}
+  monsterSpawnerPrefab: {fileID: 7919911855295295425, guid: fe9f343f08f2a4fbc96bbf8d61e53308, type: 3}
