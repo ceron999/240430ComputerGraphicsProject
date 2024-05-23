@@ -21,7 +21,7 @@ public class MonsterSpawner : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         timeAfterSpawn += Time.deltaTime;
 
@@ -35,9 +35,13 @@ public class MonsterSpawner : MonoBehaviour
     void SpawnMonster()
     {
         float randomX = Random.Range(-groundWidth, groundWidth) / 2;
-        Vector3 spawnPosition = new Vector3(randomX, transform.position.y, transform.position.z);
         int randomIdx = Random.Range(0, monsterPrefabs.Length);
-        GameObject monster = Instantiate(monsterPrefabs[randomIdx], spawnPosition, transform.rotation);
+        GameObject monster = Instantiate(monsterPrefabs[randomIdx],
+                                         new Vector3(randomX, 0, transform.position.z),
+                                         transform.rotation);
+
+        Debug.Log("Monster spawned at: " + monster.transform.position);
+
         monster.transform.SetParent(transform);
         spawnRate = Random.Range(spawnRateMin, spawnRateMax);
     }

@@ -5,11 +5,9 @@ using UnityEngine;
 public class Monster : MonoBehaviour
 {
     // TODO: change by level
-    public float speed = 10000000000000f; 
+    public float speed = 0.00000001f; 
     public float hp = 10f;
     public float crushDmg = 3f;
-
-    private Rigidbody monsterRigidbody;
 
     [SerializeField]
     Rigidbody playerRigid;
@@ -18,9 +16,7 @@ public class Monster : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        monsterRigidbody = GetComponent<Rigidbody>();
-
-        monsterRigidbody.velocity = transform.forward * speed;
+        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -51,8 +47,10 @@ public class Monster : MonoBehaviour
     private void FixedUpdate()
     {
         target = FindObjectOfType<Player>().transform;
-        monsterRigidbody.transform.LookAt(target);
-        monsterRigidbody.velocity = transform.forward * speed;
+        transform.LookAt(new Vector3(target.position.x, 0, target.position.z));
+        transform.Translate(Vector3.forward * speed);
+        //monsterRigidbody.transform.LookAt(target);
+        //monsterRigidbody.velocity = transform.forward * speed;
     }
 
     void Update()
