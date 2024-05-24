@@ -1914,6 +1914,7 @@ MonoBehaviour:
   isStageStart: 0
   isStageEnd: 0
   recordText: {fileID: 25168295}
+  playerTransform: {fileID: 826321657}
   gameEndUIParent: {fileID: 1184311892}
   endRecordText: {fileID: 954867927}
 --- !u!1 &1746266287

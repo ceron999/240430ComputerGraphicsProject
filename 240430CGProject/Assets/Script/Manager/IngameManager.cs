@@ -13,7 +13,9 @@ public class IngameManager : MonoBehaviour
 
     [SerializeField]
     TextMeshProUGUI recordText;                 //현재 기록이 얼만큼인지 나타내는 변수
-    float nowRecord = 0;
+    public float nowRecord = 0;
+    [SerializeField]
+    Transform playerTransform;
 
     //게임 종료 후
     [SerializeField]
@@ -37,7 +39,7 @@ public class IngameManager : MonoBehaviour
     {
         if (isStageStart)
         {
-            nowRecord += Time.deltaTime * 10f;
+            nowRecord = playerTransform.position.z;
             recordText.text = "Record : \n" + (Mathf.FloorToInt(nowRecord)).ToString();
         }
     }

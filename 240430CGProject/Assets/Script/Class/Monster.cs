@@ -1,17 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Monster : MonoBehaviour
 {
     // TODO: change by level
-    public float speed = 0.00000001f; 
+    public float speed; 
     public float hp = 10f;
     public float crushDmg = 3f;
 
     [SerializeField]
     Rigidbody playerRigid;
     private Transform target; // 발사할 대상.
+
+    [SerializeField]
+    GameObject hpBarParent;
+    [SerializeField]
+    Image hpBarImage;
 
     // Start is called before the first frame update
     void Start()

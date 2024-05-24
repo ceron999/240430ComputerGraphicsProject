@@ -18,10 +18,10 @@ public class PlayerStatus
     {
         hp = 10;
 
-        forwardspeed = 2000;
-        sidespeed = 100;
-        maxForwardSpeed = 2000;
-        maxsideSpeed = 100;
+        forwardspeed = 500;
+        sidespeed = 50;
+        maxForwardSpeed = 500;
+        maxsideSpeed = 50;
 
         attackDamage = 1;
     }
