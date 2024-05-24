@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     Transform bulletsParent;
     [SerializeField]
+    Animator playerAnimator;
+    [SerializeField]
     GameObject bulletPrefab;
 
     //JumpStatus
@@ -25,6 +28,12 @@ public class Player : MonoBehaviour
     //Shoot Variable
     [SerializeField] Camera mainCamera;
     bool isShooting = false;
+
+    float maxHp;
+    [SerializeField]
+    GameObject hpBarParent;
+    [SerializeField]
+    Image hpBarImage;
 
     bool isDie = false;
 
@@ -53,6 +62,8 @@ public class Player : MonoBehaviour
         playerStatus.maxsideSpeed += 0.1f * GameManager.gameManager.playerInfo.speedReinforcementCount;
 
         playerStatus.attackDamage += 0.1f * GameManager.gameManager.playerInfo.attackDamageReinforcementCount;
+
+        maxHp = playerStatus.hp;
     }
 
     #region Move Functions
@@ -66,6 +77,7 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         ingameManager.isStageStart = true;                    //stage가 시작되었으므로 좌우로 이동 가능
+        playerAnimator.SetBool("isRun", true);
 
         while (playerRigid.velocity.z <= playerStatus.maxForwardSpeed)
         {
@@ -137,7 +149,9 @@ public class Player : MonoBehaviour
     {
         Debug.Log("Jump");
         isJumping = true;
-        while (this.transform.position.y <= 10)
+        playerAnimator.Play("Jump_HG01_Anim");
+
+        while (this.transform.position.y <= 7)
         {
             playerRigid.AddForce(new Vector3(0, jumpPower, 0), ForceMode.Impulse);
             yield return null;
@@ -145,7 +159,7 @@ public class Player : MonoBehaviour
         Debug.Log(this.transform.position);
         yield return new WaitForSeconds(0.1f);
 
-        while (this.transform.position.y >= 7)
+        while (this.transform.position.y >= 0.2)
         {
             playerRigid.AddForce(new Vector3(0, downGravity, 0), ForceMode.Impulse);
             yield return null;
@@ -170,6 +184,7 @@ public class Player : MonoBehaviour
     {
         //총알 생성 및 위치 설정
         isShooting = true;
+        playerAnimator.Play("ShootSingleshot_HG01_Anim");
         GameObject bulletInstance = Instantiate(bulletPrefab);
         bulletInstance.transform.SetParent(bulletsParent);
         bulletInstance.transform.position = this.transform.position;
@@ -207,8 +222,9 @@ public class Player : MonoBehaviour
     public void GetDamaged(float getDamaged)
     {
         playerStatus.hp -= getDamaged;
+        hpBarImage.fillAmount = playerStatus.hp / maxHp;
 
-        if(playerStatus.hp <=0)
+        if (playerStatus.hp <=0)
         {
             Die();
         }
@@ -220,8 +236,14 @@ public class Player : MonoBehaviour
             return;
 
         isDie = true;
+        playerAnimator.SetBool("isDie", true);
         StopAllCoroutines();
         Time.timeScale = 0;
+
+        if (playerAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f)
+        {
+            playerAnimator.speed = 0;
+        }
 
         playerRigid.velocity = Vector3.zero;
 
