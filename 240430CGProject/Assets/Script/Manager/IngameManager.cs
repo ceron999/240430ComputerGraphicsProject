@@ -17,6 +17,11 @@ public class IngameManager : MonoBehaviour
     [SerializeField]
     Transform playerTransform;
 
+    //난이도 조절을 위해 받는 변수
+    [SerializeField]
+    Player player;
+    int nowDifficulty = 0;
+
     //게임 종료 후
     [SerializeField]
     GameObject gameEndUIParent;
@@ -40,6 +45,7 @@ public class IngameManager : MonoBehaviour
         if (isStageStart)
         {
             nowRecord = playerTransform.position.z;
+            SetDifficultyUp();
             recordText.text = "Record : \n" + (Mathf.FloorToInt(nowRecord)).ToString();
         }
     }
@@ -105,6 +111,15 @@ public class IngameManager : MonoBehaviour
         {
             GameManager.gameManager.playerInfo.runningRecord[i] = runningRecordArr[i];
         }
+    }
+
+    //nowRecord가 1000의 배수가 될때마다 이동속도 50 증가(난이도 상승)
+    void SetDifficultyUp()
+    {
+        if ((int)(nowRecord / 1000) <= nowDifficulty)
+            return;
+
+        player.SetPlayerSpeed();
     }
 
     public void ClickExitBtn()

@@ -99,10 +99,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7e87138c66e64219849c9fc5a8f82aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 2
   hp: 10
   crushDmg: 3
   playerRigid: {fileID: 0}
+  hpBarParent: {fileID: 0}
+  hpBarImage: {fileID: 0}
 --- !u!1 &1001015072165755834
 GameObject:
   m_ObjectHideFlags: 0

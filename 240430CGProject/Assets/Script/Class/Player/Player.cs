@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Player : MonoBehaviour
 {
@@ -35,6 +36,18 @@ public class Player : MonoBehaviour
     [SerializeField]
     Image hpBarImage;
 
+    //무적 변수
+    [SerializeField]
+    GameObject coolTimeBarParent;
+    [SerializeField]
+    Image CoolTimeBarImage;
+    [SerializeField]
+    TextMeshProUGUI invincibilityText;
+    int invincibilityTime = 5;                              //무적 지속시간
+    float nowCoolTime = 0;                                  //무적 쿨타임 재기용 변수
+    float invincibilityCoolTime = 30;                       //무적 쿨타임;
+    bool isInvincibility = false;                           //무적 변수
+
     bool isDie = false;
 
     private void Start()
@@ -42,6 +55,7 @@ public class Player : MonoBehaviour
         SetPlayerStatus();
 
         StartPlayerMove();
+        StartCoroutine(SetCoolTimeBarCoroutine());
     }
 
     void Update()
@@ -64,6 +78,11 @@ public class Player : MonoBehaviour
         playerStatus.attackDamage += 0.1f * GameManager.gameManager.playerInfo.attackDamageReinforcementCount;
 
         maxHp = playerStatus.hp;
+    }
+
+    public void SetPlayerSpeed()
+    {
+        playerStatus.maxForwardSpeed += 100;
     }
 
     #region Move Functions
@@ -214,6 +233,42 @@ public class Player : MonoBehaviour
         return bulletMoveDir * 1.3f;
     }
 
+    //쿨타임이 지나면 무적상태 돌입
+    IEnumerator SetInvincibilityCoroutine()
+    {
+        isInvincibility = true;
+        invincibilityText.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(invincibilityTime);
+        isInvincibility = false;
+        invincibilityText.gameObject.SetActive(false);
+    }
+
+    IEnumerator SetCoolTimeBarCoroutine()
+    {
+        yield return new WaitForSeconds(1);
+        invincibilityTime += GameManager.gameManager.playerInfo.speedReinforcementCount;
+
+        while (!ingameManager.isStageEnd)
+        {
+            //무적 상태가 아닐때 쿨타임이 돈다.
+            if (!isInvincibility)
+            {
+                nowCoolTime += Time.fixedDeltaTime;
+
+                if (nowCoolTime / invincibilityCoolTime < 1)
+                    CoolTimeBarImage.fillAmount = nowCoolTime / invincibilityCoolTime;
+                else
+                {
+                    nowCoolTime = 0;
+                    CoolTimeBarImage.fillAmount = 0;
+                    StartCoroutine(SetInvincibilityCoroutine());
+                }
+            }
+            yield return null;
+        }
+    }
+
     public float ReturnAttackDamage()
     {
         return playerStatus.attackDamage;
@@ -221,6 +276,10 @@ public class Player : MonoBehaviour
 
     public void GetDamaged(float getDamaged)
     {
+        //무적이면 데미지 안받음
+        if (isInvincibility)
+            return;
+
         playerStatus.hp -= getDamaged;
         hpBarImage.fillAmount = playerStatus.hp / maxHp;
 
