@@ -626,6 +626,7 @@ GameObject:
   - component: {fileID: 669980211280976869}
   - component: {fileID: 3841862058922193628}
   - component: {fileID: 3994644962360509645}
+  - component: {fileID: -5462890780945531925}
   m_Layer: 0
   m_Name: CactusPBR
   m_TagString: Untagged
@@ -683,10 +684,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7e87138c66e64219849c9fc5a8f82aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
-  hp: 10
+  speed: 1e-20
+  hp: 1
   crushDmg: 3
+  player: {fileID: 0}
   playerRigid: {fileID: 0}
+--- !u!135 &-5462890780945531925
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7922226354747990038}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.7
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &8911928827715279980
 GameObject:
   m_ObjectHideFlags: 0

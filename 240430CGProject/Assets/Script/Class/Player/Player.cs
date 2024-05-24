@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     IngameManager ingameManager;
 
     [SerializeField]
-    PlayerStatus playerStatus;              //player가 가지고있는 Ingame Data
+    public PlayerStatus playerStatus;              //player가 가지고있는 Ingame Data
     [SerializeField]
     Rigidbody playerRigid;
     [SerializeField]
@@ -27,6 +27,9 @@ public class Player : MonoBehaviour
     bool isShooting = false;
 
     bool isDie = false;
+
+    float leftMax = -GroundSpawner.roadWidth / 2;
+    float rightMax = GroundSpawner.roadWidth / 2;
 
     private void Start()
     {
@@ -93,7 +96,6 @@ public class Player : MonoBehaviour
                     if (Input.GetKey(KeyCode.D))
                         return;
 
-                    Debug.Log("Move Left");
                     playerRigid.AddForce(new Vector3(playerStatus.sidespeed * (-1), 0, 0), ForceMode.Impulse);
                 }
             }
@@ -106,7 +108,6 @@ public class Player : MonoBehaviour
                     if (Input.GetKey(KeyCode.A))
                         return;
 
-                    Debug.Log("Move Right");
                     playerRigid.AddForce(new Vector3(playerStatus.sidespeed, 0, 0), ForceMode.Impulse);
                 }
             }
@@ -116,6 +117,12 @@ public class Player : MonoBehaviour
             {
                 playerRigid.velocity = new Vector3(0, 0, playerStatus.maxForwardSpeed);
             }
+
+            // 추가: 좌우 이동 범위 제한
+            Vector3 newPosition = transform.position;
+            newPosition.x = Mathf.Clamp(newPosition.x, leftMax, rightMax);
+            transform.position = newPosition;
+
         }
     }
 
@@ -135,14 +142,12 @@ public class Player : MonoBehaviour
 
     IEnumerator JumpCoroutine()
     {
-        Debug.Log("Jump");
         isJumping = true;
         while (this.transform.position.y <= 10)
         {
             playerRigid.AddForce(new Vector3(0, jumpPower, 0), ForceMode.Impulse);
             yield return null;
         }
-        Debug.Log(this.transform.position);
         yield return new WaitForSeconds(0.1f);
 
         while (this.transform.position.y >= 7)
@@ -152,7 +157,6 @@ public class Player : MonoBehaviour
         }
 
         isJumping = false;
-        Debug.Log("End");
     }
 
     #endregion
@@ -207,7 +211,7 @@ public class Player : MonoBehaviour
     public void GetDamaged(float getDamaged)
     {
         playerStatus.hp -= getDamaged;
-
+        Debug.Log(playerStatus.hp);
         if(playerStatus.hp <=0)
         {
             Die();

@@ -7,21 +7,23 @@ public class GroundSpawner : MonoBehaviour
     public GameObject groundPrefab; // 맵 프리팹
     public GameObject[] obstaclePrefabs; // 장애물 프리팹
     public GameObject monsterSpawnerPrefab; // 몬스터 스포너
+    Player player;
 
 
     private Transform playerTransform;
     private float threshold = 0f;
     private float groundLength;
-    private float roadWidth;
+    static public float roadWidth = 100f;
     private int groundShawn = 5;
     private int interval;
-    private int nProduceObstacle = 5;
+    private int nProduceObstacle = 10;
 
     private Queue<GameObject> groundQueue;
 
     void Start()
     {
-        playerTransform = FindObjectOfType<Player>().transform;
+        player = FindObjectOfType<Player>();
+        playerTransform = player.transform;
         groundQueue = new Queue<GameObject>();
         groundLength = 300; // 300m
         interval = (int) (groundLength / nProduceObstacle);
@@ -45,15 +47,16 @@ public class GroundSpawner : MonoBehaviour
     // 종으로 일정한 간격 중 랜덤하게 선택해서 횡으로 랜덤하게 배치
     void SpawnObstacles(GameObject ground)
     {
+        float record = threshold;
         for (int i = 0; i < nProduceObstacle; ++i)
         {
-            if (Random.value > 0.5f)
+            if (Random.value < record * 0.0001f)
             {
                 int idx = Random.Range(0, obstaclePrefabs.Length);
                 GameObject obstacle = Instantiate(obstaclePrefabs[idx]);
                 obstacle.transform.SetParent(ground.transform);
 
-                float randomScale = Random.Range(5f, 8f);
+                float randomScale = Random.Range(3f, 8f);
                 obstacle.transform.localScale = new Vector3(randomScale, randomScale, randomScale);
 
                 float randomRotation = Random.Range(-45f, 45f);

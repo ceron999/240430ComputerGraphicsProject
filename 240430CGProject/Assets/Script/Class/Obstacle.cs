@@ -4,29 +4,27 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
-    private Rigidbody obstacleRigidbody;
-    public float crushDmg = 2f; // obstacle damage TODO: change by level
+    private float crushDmg;
     [SerializeField]
-    Rigidbody playerRigid;
+    Player player;
+
+    private CameraShaker cameraShaker;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        obstacleRigidbody = GetComponent<Rigidbody>();
+        player = FindObjectOfType<Player>();
+        crushDmg = Random.Range(0f, player.transform.position.z * 0.01f);
+        cameraShaker = Camera.main.GetComponent<CameraShaker>();
     }
 
     void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Player")
         {
-            Player player = other.GetComponent<Player>();
-
-            if (other.tag == "Player")
-            {
-                // 공격
-                player.GetDamaged(crushDmg);
-            }
+            player.GetDamaged(crushDmg);
+            StartCoroutine(cameraShaker.Shake(.15f, 1f));
         }
     }
 }

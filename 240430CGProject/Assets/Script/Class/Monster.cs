@@ -5,18 +5,32 @@ using UnityEngine;
 public class Monster : MonoBehaviour
 {
     // TODO: change by level
-    public float speed = 0.00000001f; 
-    public float hp = 10f;
+    public float speed = 0.00000000000000000001f; 
+    public float hp = 1f;
     public float crushDmg = 3f;
 
     [SerializeField]
+    Player player;
+    [SerializeField]
     Rigidbody playerRigid;
-    private Transform target; // 발사할 대상.
+    private Transform target; // 따라다닐 대상
+    private CameraShaker cameraShaker;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        player = FindObjectOfType<Player>();
+        crushDmg = Random.Range(0f, player.transform.position.z * 0.01f);
+        cameraShaker = Camera.main.GetComponent<CameraShaker>();
+    }
+
+    private void LateUpdate()
+    {
+        if (hp <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -26,8 +40,10 @@ public class Monster : MonoBehaviour
         {
             Player player = other.GetComponent<Player>();
 
+            hp -= player.playerStatus.attackDamage;
             // 공격
             player.GetDamaged(crushDmg);
+            StartCoroutine(cameraShaker.Shake(.15f, 1f));
         }
 
         // 몬스터가 총에 맞았을 때
@@ -36,11 +52,6 @@ public class Monster : MonoBehaviour
             Destroy(other.gameObject);
 
             hp -= other.GetComponent<Bullet>().attackDamage;
-
-            if(hp <= 0)
-            {
-                Destroy(gameObject);
-            }
         }
     }
 
