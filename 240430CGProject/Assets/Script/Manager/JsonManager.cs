@@ -41,7 +41,7 @@ public class JsonManager
 
         }
         builder.Append(nameString);
-        Debug.Log(builder.ToString());
+        
         jsonText = JsonUtility.ToJson(saveData, true);
         //이러면은 일단 데이터가 텍스트로 변환이 된다
         //jsonUtility를 이용하여 data를 json형식의 text로 바꾸어준다

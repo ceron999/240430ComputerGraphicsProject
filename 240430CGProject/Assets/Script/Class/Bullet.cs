@@ -15,7 +15,7 @@ public class Bullet : MonoBehaviour
     public void ShootBullet(Vector3 getMoveDir)
     {
         bulletRigid = this.GetComponent<Rigidbody>();
-        bulletRigid.velocity = getMoveDir; Debug.Log(bulletRigid.velocity);
+        bulletRigid.velocity = getMoveDir.normalized * 600;
     }
 
     IEnumerator DestoryThisBullet()

@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     IngameManager ingameManager;
 
     [SerializeField]
-    PlayerStatus playerStatus;              //player가 가지고있는 Ingame Data
+    public PlayerStatus playerStatus;              //player가 가지고있는 Ingame Data
     [SerializeField]
     Rigidbody playerRigid;
     [SerializeField]
@@ -20,8 +20,6 @@ public class Player : MonoBehaviour
     [SerializeField]
     GameObject bulletPrefab;
 
-    //JumpStatus
-    int groundLayer = 1 << 8;
     [SerializeField] bool isJumping = false;                 //Jump가 2단 이상으로 되지 않도록 설정하는 변수
     [SerializeField] float jumpPower;
     [SerializeField] float downGravity;
@@ -49,6 +47,9 @@ public class Player : MonoBehaviour
     bool isInvincibility = false;                           //무적 변수
 
     bool isDie = false;
+
+    float leftMax = -GroundSpawner.roadWidth / 2;
+    float rightMax = GroundSpawner.roadWidth / 2;
 
     private void Start()
     {
@@ -124,7 +125,6 @@ public class Player : MonoBehaviour
                     if (Input.GetKey(KeyCode.D))
                         return;
 
-                    Debug.Log("Move Left");
                     playerRigid.AddForce(new Vector3(playerStatus.sidespeed * (-1), 0, 0), ForceMode.Impulse);
                 }
             }
@@ -137,7 +137,6 @@ public class Player : MonoBehaviour
                     if (Input.GetKey(KeyCode.A))
                         return;
 
-                    Debug.Log("Move Right");
                     playerRigid.AddForce(new Vector3(playerStatus.sidespeed, 0, 0), ForceMode.Impulse);
                 }
             }
@@ -147,6 +146,12 @@ public class Player : MonoBehaviour
             {
                 playerRigid.velocity = new Vector3(0, 0, playerStatus.maxForwardSpeed);
             }
+
+            // 추가: 좌우 이동 범위 제한
+            Vector3 newPosition = transform.position;
+            newPosition.x = Mathf.Clamp(newPosition.x, leftMax, rightMax);
+            transform.position = newPosition;
+
         }
     }
 
@@ -166,7 +171,6 @@ public class Player : MonoBehaviour
 
     IEnumerator JumpCoroutine()
     {
-        Debug.Log("Jump");
         isJumping = true;
         playerAnimator.Play("Jump_HG01_Anim");
 
@@ -175,7 +179,6 @@ public class Player : MonoBehaviour
             playerRigid.AddForce(new Vector3(0, jumpPower, 0), ForceMode.Impulse);
             yield return null;
         }
-        Debug.Log(this.transform.position);
         yield return new WaitForSeconds(0.1f);
 
         while (this.transform.position.y >= 0.2)
@@ -185,7 +188,6 @@ public class Player : MonoBehaviour
         }
 
         isJumping = false;
-        Debug.Log("End");
     }
 
     #endregion
@@ -226,11 +228,7 @@ public class Player : MonoBehaviour
         {
             bulletMoveDir = hit.point - new Vector3(0,0,transform.position.z);
         }
-        
-        bulletMoveDir.y = 0;
-        bulletMoveDir.z += playerRigid.velocity.z;
-
-        return bulletMoveDir * 1.3f;
+        return bulletMoveDir;
     }
 
     //쿨타임이 지나면 무적상태 돌입

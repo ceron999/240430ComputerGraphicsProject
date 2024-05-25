@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3024610543552008482}
-  - component: {fileID: 897023555295183235}
+  - component: {fileID: 4161834621349105929}
   m_Layer: 0
   m_Name: MonsterSpawner
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!114 &897023555295183235
+--- !u!114 &4161834621349105929
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -49,5 +49,7 @@ MonoBehaviour:
   - {fileID: 4108100395141494834, guid: ea5668d846823440ab5a422125e24533, type: 3}
   - {fileID: 825289462944956365, guid: 3bfe5b91a393f4028a51124575388af5, type: 3}
   - {fileID: 8267180422741064972, guid: d2c874f9b4c32418a8eb112b44c85ea6, type: 3}
-  spawnRateMin: 1
-  spawnRateMax: 5
+  spawnRateMin: 3
+  spawnRateMax: 9
+  spawnRateMinLimit: 0.1
+  spawnRateMaxLimit: 0.3

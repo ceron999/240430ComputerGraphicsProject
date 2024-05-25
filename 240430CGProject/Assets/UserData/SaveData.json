@@ -1,11 +1,11 @@
 {
-    "level": 7,
-    "exp": 2628.0,
+    "level": 9,
+    "exp": 9760.0,
     "maxExp": 1000.0,
     "runningRecord": [
-        2888.0,
-        1434.0,
-        1192.0
+        4838.0,
+        4294.0,
+        2888.0
     ],
     "hpReinforcementCount": 0,
     "attackDamageReinforcementCount": 0,

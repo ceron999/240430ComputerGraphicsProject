@@ -812,7 +812,8 @@ GameObject:
   m_Component:
   - component: {fileID: 669980211280976869}
   - component: {fileID: 3841862058922193628}
-  - component: {fileID: 3994644962360509645}
+  - component: {fileID: -5462890780945531925}
+  - component: {fileID: -2079322386508279828}
   m_Layer: 0
   m_Name: CactusPBR
   m_TagString: Untagged
@@ -848,7 +849,7 @@ Animator:
   m_GameObject: {fileID: 7922226354747990038}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 5961b834d0b54fc9828d7c3ef7ac8279, type: 3}
-  m_Controller: {fileID: 9100000, guid: 4198fa9b9a5842c0a5e4559b286248eb, type: 2}
+  m_Controller: {fileID: 9100000, guid: 86a48047d8d6c432386c4ac9b3a19130, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -859,7 +860,28 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &3994644962360509645
+--- !u!135 &-5462890780945531925
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7922226354747990038}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 1
+  m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &-2079322386508279828
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

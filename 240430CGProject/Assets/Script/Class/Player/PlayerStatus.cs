@@ -14,6 +14,8 @@ public class PlayerStatus
 
     public float attackDamage;      //플레이어 공격력
 
+    public float nowRecord;
+
     public PlayerStatus()
     {
         hp = 10;
