@@ -7,22 +7,22 @@ using UnityEngine.UI;
 public class Pause : MonoBehaviour
 {
     public static bool IsPause;
-    // ÀÏ½ÃÁ¤Áö ½Ã º¸¿©ÁÙ ¸Ş´ºÃ¢
+    // ì¼ì‹œì •ì§€ ì‹œ ë³´ì—¬ì¤„ ë©”ë‰´ì°½
     public GameObject PauseMenu;
 
     public GameObject PauseButton;
     
-    // IsPause ÇÃ·¡±×¿Í ÀÏ½ÃÁ¤Áö ¸Ş´º false·Î ÃÊ±âÈ­
+    // IsPause í”Œë˜ê·¸ì™€ ì¼ì‹œì •ì§€ ë©”ë‰´ falseë¡œ ì´ˆê¸°í™”
     private void Start()
     {
         IsPause = false;
         PauseMenu.SetActive(false);
     }
 
-    // ¸ğµç È°µ¿ÀÌ ¸ØÃß°í ÀÏ½ÃÁ¤Áö UI Ç¥½Ã
+    // ëª¨ë“  í™œë™ì´ ë©ˆì¶”ê³  ì¼ì‹œì •ì§€ UI í‘œì‹œ
     public void OnClickPause()
     {
-        // ½Ã°£ Á¤Áö
+        // ì‹œê°„ ì •ì§€
         Time.timeScale = 0;
         IsPause = true;
         PauseMenu.SetActive(true);
@@ -30,7 +30,7 @@ public class Pause : MonoBehaviour
 
 }
 
-    // ÀÌ¾î¼­ ÇÃ·¹ÀÌ
+    // ì´ì–´ì„œ í”Œë ˆì´
     public void OnClickResume()
     {
         Time.timeScale = 1;
@@ -39,14 +39,14 @@ public class Pause : MonoBehaviour
         PauseButton.SetActive(true);
     }
 
-    // Ã³À½ºÎÅÍ ´Ù½Ã ½ÃÀÛ
+    // ì²˜ìŒë¶€í„° ë‹¤ì‹œ ì‹œì‘
     public void OnClickRestart()
     {
         Time.timeScale = 1;
         SceneManager.LoadScene("IngameScene");
     }
 
-    // ½ÃÀÛÈ­¸éÀ¸·Î ÀÌµ¿
+    // ì‹œì‘í™”ë©´ìœ¼ë¡œ ì´ë™
     public void OnClickMainmenu()
     {
         Time.timeScale = 1;

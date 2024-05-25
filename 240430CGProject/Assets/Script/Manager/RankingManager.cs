@@ -7,17 +7,17 @@ using UnityEngine.SceneManagement;
 public class RankingManager : MonoBehaviour
 {
     static GameManager gameManager;
-    // ±â·Ï ºÒ·¯¿À±â 
+    // ê¸°ë¡ ë¶ˆëŸ¬ì˜¤ê¸° 
     float[] runningRecordRanking;
 
-    // 1, 2, 3µî ÅØ½ºÆ® 
+    // 1, 2, 3ë“± í…ìŠ¤íŠ¸ 
     public TMP_Text firstPlace;
     public TMP_Text secondPlace;
     public TMP_Text thirdPlace;
 
     private void Start()
     {
-        // 1, 2, 3µî È­¸é¿¡ Ãâ·Â 
+        // 1, 2, 3ë“± í™”ë©´ì— ì¶œë ¥ 
         runningRecordRanking = GameManager.gameManager.playerInfo.runningRecord;
         firstPlace.text = runningRecordRanking[0].ToString() + "m";
         secondPlace.text = runningRecordRanking[1].ToString() + "m";

@@ -226,7 +226,7 @@ public class Player : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition), out hit))
         {
-            bulletMoveDir = hit.point - new Vector3(0,0,transform.position.z);
+            bulletMoveDir = hit.point;
         }
         return bulletMoveDir;
     }

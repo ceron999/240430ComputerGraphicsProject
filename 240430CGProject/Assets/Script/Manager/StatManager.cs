@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 public class StatManager : MonoBehaviour
 {
 
-    // ·¹º§ °ª ÅØ½ºÆ®
+    // ë ˆë²¨ ê°’ í…ìŠ¤íŠ¸
     public TMP_Text hpLevelText;
     public TMP_Text damageLevelText;
     public TMP_Text speedLevelText;
@@ -18,53 +18,53 @@ public class StatManager : MonoBehaviour
     public int currentDamageLevel;
     public int currentSpeedLevel;
 
-    // ·¹º§ +, - ¹öÆ° ´ãÀ» ¹è¿­ 
+    // ë ˆë²¨ +, - ë²„íŠ¼ ë‹´ì„ ë°°ì—´ 
     GameObject[] optionButtons;
 
-    // ÇöÀç »ç¿ëÇÒ ¼ö ÀÖ´Â ½ºÅÈ Æ÷ÀÎÆ® 
+    // í˜„ì¬ ì‚¬ìš©í•  ìˆ˜ ìˆëŠ” ìŠ¤íƒ¯ í¬ì¸íŠ¸ 
     public int statPoint;
     public TMP_Text statPointText;
   
 
-    // ÀúÀå ¹öÆ° 
+    // ì €ì¥ ë²„íŠ¼ 
     public GameObject saveButton;
 
-    // µÚ·Î°¡±â ¹öÆ°
+    // ë’¤ë¡œê°€ê¸° ë²„íŠ¼
     public GameObject goBackButton;
 
 
     void Start()
     {
-        // ÇöÀç °­È­ ·¹º§ °¡Á®¿À±â
+        // í˜„ì¬ ê°•í™” ë ˆë²¨ ê°€ì ¸ì˜¤ê¸°
         currentHpLevel = GameManager.gameManager.playerInfo.hpReinforcementCount;
         currentDamageLevel = GameManager.gameManager.playerInfo.attackDamageReinforcementCount;
         currentSpeedLevel = GameManager.gameManager.playerInfo.speedReinforcementCount;
         statPoint = GameManager.gameManager.playerInfo.level - (currentHpLevel + currentDamageLevel + currentSpeedLevel);
 
 
-        // ÇöÀç ·¹º§ È­¸é¿¡ Ç¥½Ã 
+        // í˜„ì¬ ë ˆë²¨ í™”ë©´ì— í‘œì‹œ 
         hpLevelText.text = currentHpLevel.ToString();
         damageLevelText.text = currentDamageLevel.ToString();
         speedLevelText.text = currentSpeedLevel.ToString();
         statPointText.text = statPoint.ToString();
 
-        // ¾÷´Ù¿î ¹öÆ° ¹è¿­(È°¼ºÈ­ Åä±Û ¸ñÀû)
+        // ì—…ë‹¤ìš´ ë²„íŠ¼ ë°°ì—´(í™œì„±í™” í† ê¸€ ëª©ì )
         optionButtons = GameObject.FindGameObjectsWithTag("button");
 
-        // ÀúÀå ¹öÆ° ºñÈ°¼ºÈ­·Î ÃÊ±âÈ­
+        // ì €ì¥ ë²„íŠ¼ ë¹„í™œì„±í™”ë¡œ ì´ˆê¸°í™”
         saveButton.GetComponent<Button>().interactable = false;
 
-        // °­È­ ¹öÆ° È°¼ºÈ­ ¿©ºÎ °Ë»ç
+        // ê°•í™” ë²„íŠ¼ í™œì„±í™” ì—¬ë¶€ ê²€ì‚¬
         ToggleBtnActive();
 
         
     }
 
-    // ÀúÀå ¹öÆ° ´­·¶À» ½Ã 
+    // ì €ì¥ ë²„íŠ¼ ëˆŒë €ì„ ì‹œ 
     public void OnClickSaveBtn()
     {
 
-        // º¯°æµÈ ·¹º§ ¹× ½ºÅÈ Æ÷ÀÎÆ® PlayerInfo ¿¡ ÀúÀå 
+        // ë³€ê²½ëœ ë ˆë²¨ ë° ìŠ¤íƒ¯ í¬ì¸íŠ¸ PlayerInfo ì— ì €ì¥ 
         GameManager.gameManager.playerInfo.hpReinforcementCount = currentHpLevel;
         GameManager.gameManager.playerInfo.attackDamageReinforcementCount = currentDamageLevel;
         GameManager.gameManager.playerInfo.speedReinforcementCount = currentSpeedLevel;
@@ -72,29 +72,29 @@ public class StatManager : MonoBehaviour
         JsonManager.SaveJson<PlayerInfo>(GameManager.gameManager.playerInfo, "SaveData");
 
 
-        // ¹öÆ° È°¼ºÈ­ °Ë»ç
+        // ë²„íŠ¼ í™œì„±í™” ê²€ì‚¬
         ToggleBtnActive();
 
-        // ÀúÀå ¹öÆ° ºñÈ°¼ºÈ­
+        // ì €ì¥ ë²„íŠ¼ ë¹„í™œì„±í™”
         saveButton.GetComponent<Button>().interactable = false;
     }
 
-    // ¹öÆ° È°¼ºÈ­ Åä±Û
+    // ë²„íŠ¼ í™œì„±í™” í† ê¸€
     public void ToggleBtnActive()
     {
-        // ½ºÅÈ Æ÷ÀÎÆ® 0ÀÌ¸é
+        // ìŠ¤íƒ¯ í¬ì¸íŠ¸ 0ì´ë©´
         if (statPoint <= 0)
         {         
-            // ¹öÆ° ºñÈ°¼ºÈ­
+            // ë²„íŠ¼ ë¹„í™œì„±í™”
            foreach (GameObject button in optionButtons)
             {
                 button.GetComponent<Button>().interactable = false;             
             }
         }
-        // ½ºÅÈ Æ÷ÀÎÆ® 1 ÀÌ»óÀÌ¸é
+        // ìŠ¤íƒ¯ í¬ì¸íŠ¸ 1 ì´ìƒì´ë©´
         else 
         {
-            // ¹öÆ° È°¼ºÈ­
+            // ë²„íŠ¼ í™œì„±í™”
             foreach (GameObject button in optionButtons)
             {
                 button.GetComponent<Button>().interactable = true;             
@@ -109,25 +109,25 @@ public class StatManager : MonoBehaviour
 
     void saveBtnToggle()
     {
-        // ÀúÀå ¹öÆ° È°¼ºÈ­
+        // ì €ì¥ ë²„íŠ¼ í™œì„±í™”
         if (saveButton.GetComponent<Button>().interactable == false)
         {
             saveButton.GetComponent<Button>().interactable = true;
         }
     }
 
-    // °¢ ¿É¼Ç º° ·¹º§ ¾÷/´Ù¿î ¹öÆ° Å¬¸¯ ½Ã
+    // ê° ì˜µì…˜ ë³„ ë ˆë²¨ ì—…/ë‹¤ìš´ ë²„íŠ¼ í´ë¦­ ì‹œ
 
     public void HpLevelUp()
     {
-        // ½ºÅÈÆ÷ÀÎÆ®°¡ 0ÀÌ ¾Æ´Ï¸é °¡´É
+        // ìŠ¤íƒ¯í¬ì¸íŠ¸ê°€ 0ì´ ì•„ë‹ˆë©´ ê°€ëŠ¥
         if (statPoint != 0)
         {
-            // ·¹º§ +1
+            // ë ˆë²¨ +1
             currentHpLevel+= 1;
             hpLevelText.text = currentHpLevel.ToString();
 
-            // ½ºÅÈ Æ÷ÀÎÆ® -1
+            // ìŠ¤íƒ¯ í¬ì¸íŠ¸ -1
             statPoint -= 1;
             statPointText.text = statPoint.ToString();
 
@@ -137,14 +137,14 @@ public class StatManager : MonoBehaviour
 
     public void HpLevelDown()
     {
-        // ÇöÀç ·¹º§ÀÌ 0ÀÌ ¾Æ´Ñ °æ¿ì °¡´É
+        // í˜„ì¬ ë ˆë²¨ì´ 0ì´ ì•„ë‹Œ ê²½ìš° ê°€ëŠ¥
         if (currentHpLevel != 0)
         {
-            // ÇöÀç ·¹º§ -1
+            // í˜„ì¬ ë ˆë²¨ -1
             currentHpLevel -= 1;
             hpLevelText.text = currentHpLevel.ToString();
 
-            // ½ºÅÈÆ÷ÀÎÆ® +1
+            // ìŠ¤íƒ¯í¬ì¸íŠ¸ +1
             statPoint += 1;
             statPointText.text = statPoint.ToString();
 
@@ -154,17 +154,17 @@ public class StatManager : MonoBehaviour
 
     }
 
-    // °ø°İ·Â ¹öÆ°
+    // ê³µê²©ë ¥ ë²„íŠ¼
     public void DamageLevelUp()
     {
-        // ½ºÅÈÆ÷ÀÎÆ®°¡ 0ÀÌ ¾Æ´Ï¸é °¡´É
+        // ìŠ¤íƒ¯í¬ì¸íŠ¸ê°€ 0ì´ ì•„ë‹ˆë©´ ê°€ëŠ¥
         if (statPoint != 0)
         {
-            // ·¹º§ +1
+            // ë ˆë²¨ +1
             currentDamageLevel += 1;
             damageLevelText.text = currentDamageLevel.ToString();
 
-            // ½ºÅÈ Æ÷ÀÎÆ® -1
+            // ìŠ¤íƒ¯ í¬ì¸íŠ¸ -1
             statPoint -= 1;
             statPointText.text = statPoint.ToString();
 
@@ -174,14 +174,14 @@ public class StatManager : MonoBehaviour
 
     public void DamageLevelDown()
     {
-        // ÇöÀç ·¹º§ÀÌ 0ÀÌ ¾Æ´Ñ °æ¿ì °¡´É
+        // í˜„ì¬ ë ˆë²¨ì´ 0ì´ ì•„ë‹Œ ê²½ìš° ê°€ëŠ¥
         if (currentDamageLevel != 0)
         {
-            // ÇöÀç ·¹º§ -1
+            // í˜„ì¬ ë ˆë²¨ -1
             currentDamageLevel -= 1;
             damageLevelText.text = currentDamageLevel.ToString();
 
-            // ½ºÅÈÆ÷ÀÎÆ® +1
+            // ìŠ¤íƒ¯í¬ì¸íŠ¸ +1
             statPoint += 1;
             statPointText.text = statPoint.ToString();
 
@@ -190,17 +190,17 @@ public class StatManager : MonoBehaviour
     }
 
 
-    // ÀÌµ¿¼Óµµ ¹öÆ°
+    // ì´ë™ì†ë„ ë²„íŠ¼
     public void SpeedLevelUp()
     {
-        // ½ºÅÈÆ÷ÀÎÆ®°¡ 0ÀÌ ¾Æ´Ï¸é °¡´É
+        // ìŠ¤íƒ¯í¬ì¸íŠ¸ê°€ 0ì´ ì•„ë‹ˆë©´ ê°€ëŠ¥
         if (statPoint != 0)
         {
-            // ·¹º§ +1
+            // ë ˆë²¨ +1
             currentSpeedLevel += 1;
             speedLevelText.text = currentSpeedLevel.ToString();
 
-            // ½ºÅÈ Æ÷ÀÎÆ® -1
+            // ìŠ¤íƒ¯ í¬ì¸íŠ¸ -1
             statPoint -= 1;
             statPointText.text = statPoint.ToString();
 
@@ -210,14 +210,14 @@ public class StatManager : MonoBehaviour
 
     public void SpeedDownBtn()
     {
-        // ÇöÀç ·¹º§ÀÌ 0ÀÌ ¾Æ´Ñ °æ¿ì °¡´É
+        // í˜„ì¬ ë ˆë²¨ì´ 0ì´ ì•„ë‹Œ ê²½ìš° ê°€ëŠ¥
         if (currentSpeedLevel != 0)
         {
-            // ÇöÀç ·¹º§ -1
+            // í˜„ì¬ ë ˆë²¨ -1
             currentSpeedLevel -= 1;
             speedLevelText.text = currentSpeedLevel.ToString();
 
-            // ½ºÅÈÆ÷ÀÎÆ® +1
+            // ìŠ¤íƒ¯í¬ì¸íŠ¸ +1
             statPoint += 1;
             statPointText.text = statPoint.ToString();
 

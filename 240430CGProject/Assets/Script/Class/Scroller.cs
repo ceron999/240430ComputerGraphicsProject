@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Scroller : MonoBehaviour
 {
-    // ½ÃÀÛÈ­¸é ¾Ö´Ï¸ŞÀÌ¼Ç ±¸Çö
+    // ì‹œì‘í™”ë©´ ì• ë‹ˆë©”ì´ì…˜ êµ¬í˜„
     [SerializeField] private RawImage _img;
     [SerializeField] private float _x, _y;
 

@@ -31,7 +31,6 @@ public class MonsterSpawner : MonoBehaviour
     void FixedUpdate()
     {
         timeAfterSpawn += Time.deltaTime;
-        Debug.Log(spawnRate);
         if(timeAfterSpawn >= spawnRate)
         {
             timeAfterSpawn = 0;
@@ -44,7 +43,6 @@ public class MonsterSpawner : MonoBehaviour
 
     void SpawnMonster()
     {
-        Debug.Log("spawn monster");
         float randomX = Random.Range(-groundWidth, groundWidth) / 4;
         int randomIdx = Random.Range(0, monsterPrefabs.Length);
         GameObject monster = Instantiate(monsterPrefabs[randomIdx],

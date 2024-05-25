@@ -30,7 +30,6 @@ public class IngameManager : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("1");
         recordText.text = "Record : " + nowRecord.ToString();
     }
 
@@ -47,7 +46,7 @@ public class IngameManager : MonoBehaviour
         {
             nowRecord = playerTransform.position.z;
             SetDifficultyUp();
-            recordText.text = "Record : \n" + (Mathf.FloorToInt(nowRecord)).ToString() + "m";
+            recordText.text = "Record : " + (Mathf.FloorToInt(nowRecord)).ToString() + "m";
         }
     }
     
@@ -91,7 +90,6 @@ public class IngameManager : MonoBehaviour
 
         for (int i = 0; i < runningRecordArr.Length - 1; i++)
         {
-            Debug.Log(i);
             int tempIndex = i;
             for(int j = i + 1; j < runningRecordArr.Length; j++)
             {
@@ -102,12 +100,6 @@ public class IngameManager : MonoBehaviour
             float tempRecord = runningRecordArr[tempIndex];
             runningRecordArr[tempIndex] = runningRecordArr[i];
             runningRecordArr[i] = tempRecord;
-
-
-            Debug.Log(i + "회차 1 : " + runningRecordArr[0]);
-            Debug.Log(i + "회차 2 : " + runningRecordArr[1]);
-            Debug.Log(i + "회차 3 : " + runningRecordArr[2]);
-            Debug.Log(i + "회차 4 : " + runningRecordArr[3]);
         }
 
         //정렬한 Record 다시 삽입

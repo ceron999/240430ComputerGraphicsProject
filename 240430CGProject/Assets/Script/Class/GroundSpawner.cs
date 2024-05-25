@@ -28,7 +28,6 @@ public class GroundSpawner : MonoBehaviour
         groundLength = 300; // 300m
         interval = (int) (groundLength / nProduceObstacle);
         roadWidth = 100;
-        Debug.Log(groundLength);
         for (int i = 0; i < groundShawn; ++i)
         {
             SpawnGround();
