@@ -2,6 +2,7 @@
     "level": 9,
     "exp": 9760.0,
     "maxExp": 1000.0,
+    "statPoint": 0,
     "runningRecord": [
         4838.0,
         4294.0,
