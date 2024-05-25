@@ -395,8 +395,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5514015262480162841}
   - component: {fileID: 46994137718608293}
-  - component: {fileID: 2280542474811980796}
   - component: {fileID: 4909252846277344632}
+  - component: {fileID: 1184777491615365}
   m_Layer: 0
   m_Name: MushroomAngryPBR
   m_TagString: Untagged
@@ -431,7 +431,7 @@ Animator:
   m_GameObject: {fileID: 4108100395141494834}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: a736566565a0467eb2ba23a7007ba560, type: 3}
-  m_Controller: {fileID: 9100000, guid: 020683beeec440dbad4cb5ded3893786, type: 2}
+  m_Controller: {fileID: 9100000, guid: bd6efc917e81c435192e6fc256afd10c, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -442,23 +442,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &2280542474811980796
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4108100395141494834}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7e87138c66e64219849c9fc5a8f82aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 1e-20
-  hp: 1
-  crushDmg: 3
-  player: {fileID: 0}
-  playerRigid: {fileID: 0}
 --- !u!135 &4909252846277344632
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -478,8 +461,23 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.6
+  m_Radius: 1
   m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &1184777491615365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4108100395141494834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7e87138c66e64219849c9fc5a8f82aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  playerRigid: {fileID: 0}
+  animator: {fileID: 0}
 --- !u!1 &4460579185187327043
 GameObject:
   m_ObjectHideFlags: 0

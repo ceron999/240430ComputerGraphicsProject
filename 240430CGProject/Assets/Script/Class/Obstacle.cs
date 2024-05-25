@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
+    private float baseCrushDmg = 1f;
     private float crushDmg;
     [SerializeField]
     Player player;
@@ -15,7 +16,9 @@ public class Obstacle : MonoBehaviour
     void Start()
     {
         player = FindObjectOfType<Player>();
-        crushDmg = Random.Range(0f, player.transform.position.z * 0.01f);
+        crushDmg = Random.Range(0f,
+            baseCrushDmg * Mathf.Pow(1.1f,
+                Mathf.FloorToInt(player.transform.position.z / 300f)));
         cameraShaker = Camera.main.GetComponent<CameraShaker>();
     }
 

@@ -619,7 +619,7 @@ MonoBehaviour:
   playerTransform: {fileID: 1477159043}
   groundSpawner: {fileID: 2605039959609603821, guid: 1722f9562b3aa4561952ff284b49f10e, type: 3}
   obstacleSpawner: {fileID: 0}
-  monsterSpawner: {fileID: 5593566249952632727, guid: 7a80dbfc856a24a53a48f24e3e7e1915, type: 3}
+  monsterSpawner: {fileID: 7919911855295295425, guid: fe9f343f08f2a4fbc96bbf8d61e53308, type: 3}
 --- !u!1 &202853886
 GameObject:
   m_ObjectHideFlags: 0
@@ -1563,6 +1563,7 @@ MonoBehaviour:
     maxForwardSpeed: 0
     maxsideSpeed: 0
     attackDamage: 0
+    nowRecord: 0
   playerRigid: {fileID: 1477159044}
   bulletsParent: {fileID: 579425951}
   bulletPrefab: {fileID: 1799256706637394124, guid: 289df297633d0b844a71f07745965131, type: 3}

@@ -14,9 +14,18 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     GameObject monsterSpawner;
 
+    GameObject monsterSpawnerInstance;
     void Start()
     {
         GameObject groundSpawnerInstance = Instantiate(groundSpawner);
         groundSpawnerInstance.transform.position = new Vector3(0, 0, 0);
+        monsterSpawnerInstance = Instantiate(monsterSpawner);
+        monsterSpawnerInstance.transform.position = new Vector3(0, 0, 0);
+    }
+
+    private void Update()
+    {
+        monsterSpawnerInstance.transform.position = new Vector3(
+            0, 0, playerTransform.position.z + (300));
     }
 }

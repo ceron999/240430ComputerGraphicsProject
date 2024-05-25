@@ -1,13 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Monster : MonoBehaviour
 {
-    // TODO: change by level
-    public float speed = 0.00000000000000000001f; 
-    public float hp = 1f;
-    public float crushDmg = 3f;
+    float baseSpeed = 1f;
+    float speed;
+    float speedLimit = 3f;
+    float baseHP = 1f; // = player default attack Dmg
+    float hp;
+    float baseCrushDmg = 1f; // = 1/10 * player default HP
+    float crushDmg;
 
     [SerializeField]
     Player player;
@@ -16,18 +17,24 @@ public class Monster : MonoBehaviour
     private Transform target; // 따라다닐 대상
     private CameraShaker cameraShaker;
 
+    public Animator animator;
+
 
     // Start is called before the first frame update
     void Start()
     {
         player = FindObjectOfType<Player>();
-        crushDmg = Random.Range(0f, player.transform.position.z * 0.01f);
+        target = FindObjectOfType<Player>().transform;
+        animator = GetComponent<Animator>();       
+        hp = baseHP * Mathf.Pow(1.1f, player.transform.position.z / 300f);
+        crushDmg = Random.Range(0f,
+            baseCrushDmg * Mathf.Pow(1.1f,
+                Mathf.FloorToInt(player.transform.position.z / 300f)));
+        speed = Mathf.Min(speedLimit, Random.Range(0f, baseSpeed *
+            Mathf.Pow(1.1f, Mathf.FloorToInt(player.transform.position.z / 1500f))));
         cameraShaker = Camera.main.GetComponent<CameraShaker>();
-    }
-
-    private void LateUpdate()
-    {
-        if (hp <= 0)
+        // 몬스터가 옆이나 뒤에서 생성되면 제거
+        if(transform.position.z <= player.transform.position.z)
         {
             Destroy(gameObject);
         }
@@ -35,39 +42,47 @@ public class Monster : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // 몬스터가 플레이어와 접촉
-        if(other.tag == "Player")
+        if (hp >= 0)
         {
-            Player player = other.GetComponent<Player>();
+            // 몬스터가 플레이어와 접촉
+            if (other.tag == "Player")
+            {
+                hp = 0;
+                gameObject.GetComponent<SphereCollider>().enabled = false;
+                Player player = other.GetComponent<Player>();
+                animator.SetTrigger("Contact");
 
-            hp -= player.playerStatus.attackDamage;
-            // 공격
-            player.GetDamaged(crushDmg);
-            StartCoroutine(cameraShaker.Shake(.15f, 1f));
-        }
+                // 공격
+                player.GetDamaged(crushDmg);
+                StartCoroutine(cameraShaker.Shake(.15f, 1f));
+            }
 
-        // 몬스터가 총에 맞았을 때
-        if(other.tag == "Bullet")
-        {
-            Destroy(other.gameObject);
+            // 몬스터가 총에 맞았을 때
+            if (other.tag == "Bullet")
+            {
+                float dmg = other.GetComponent<Bullet>().attackDamage;
+                Destroy(other.gameObject);
 
-            hp -= other.GetComponent<Bullet>().attackDamage;
+                hp -= dmg;
+                if (hp <= 0)
+                {
+                    animator.SetTrigger("Die");
+                    gameObject.GetComponent<SphereCollider>().enabled = false;
+                }
+                else
+                {
+                    animator.SetTrigger("Attacked");
+                }
+            }
         }
     }
 
     private void FixedUpdate()
     {
-        target = FindObjectOfType<Player>().transform;
-        transform.LookAt(new Vector3(target.position.x, 0, target.position.z));
-        transform.Translate(Vector3.forward * speed);
-        //monsterRigidbody.transform.LookAt(target);
-        //monsterRigidbody.velocity = transform.forward * speed;
-    }
-
-    void Update()
-    {
-        //target = FindObjectOfType<Player>().transform;
-        //monsterRigidbody.transform.LookAt(target);
-        //monsterRigidbody.velocity = transform.forward * speed;
+        if (hp > 0)
+        {
+            transform.LookAt(new Vector3(target.position.x, 0, target.position.z + 5));
+            transform.Translate(Vector3.forward * speed);
+        }
     }
 }

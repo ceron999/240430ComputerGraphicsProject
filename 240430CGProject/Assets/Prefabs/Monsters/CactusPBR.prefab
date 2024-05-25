@@ -625,8 +625,8 @@ GameObject:
   m_Component:
   - component: {fileID: 669980211280976869}
   - component: {fileID: 3841862058922193628}
-  - component: {fileID: 3994644962360509645}
   - component: {fileID: -5462890780945531925}
+  - component: {fileID: -2079322386508279828}
   m_Layer: 0
   m_Name: CactusPBR
   m_TagString: Untagged
@@ -661,7 +661,7 @@ Animator:
   m_GameObject: {fileID: 7922226354747990038}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 5961b834d0b54fc9828d7c3ef7ac8279, type: 3}
-  m_Controller: {fileID: 9100000, guid: 4198fa9b9a5842c0a5e4559b286248eb, type: 2}
+  m_Controller: {fileID: 9100000, guid: 86a48047d8d6c432386c4ac9b3a19130, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -672,23 +672,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &3994644962360509645
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7922226354747990038}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7e87138c66e64219849c9fc5a8f82aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 1e-20
-  hp: 1
-  crushDmg: 3
-  player: {fileID: 0}
-  playerRigid: {fileID: 0}
 --- !u!135 &-5462890780945531925
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -708,8 +691,23 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.7
+  m_Radius: 1
   m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &-2079322386508279828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7922226354747990038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7e87138c66e64219849c9fc5a8f82aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  playerRigid: {fileID: 0}
+  animator: {fileID: 0}
 --- !u!1 &8911928827715279980
 GameObject:
   m_ObjectHideFlags: 0
