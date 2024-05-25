@@ -20,7 +20,7 @@ public class PlayerInfo
     {
         level = 0;
         exp = 0;
-        maxExp = 1000;
+        maxExp = 20000;
         // 임시로 설정해 둠
         statPoint = 0;
 

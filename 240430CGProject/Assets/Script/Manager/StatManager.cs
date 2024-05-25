@@ -39,7 +39,7 @@ public class StatManager : MonoBehaviour
         currentHpLevel = GameManager.gameManager.playerInfo.hpReinforcementCount;
         currentDamageLevel = GameManager.gameManager.playerInfo.attackDamageReinforcementCount;
         currentSpeedLevel = GameManager.gameManager.playerInfo.speedReinforcementCount;
-        statPoint = GameManager.gameManager.playerInfo.statPoint;
+        statPoint = GameManager.gameManager.playerInfo.level - (currentHpLevel + currentDamageLevel + currentSpeedLevel);
 
 
         // 현재 레벨 화면에 표시 
@@ -65,10 +65,10 @@ public class StatManager : MonoBehaviour
     {
 
         // 변경된 레벨 및 스탯 포인트 PlayerInfo 에 저장 
-        GameManager.gameManager.playerInfo.hpReinforcementCount = int.Parse(hpLevelText.text);
-        GameManager.gameManager.playerInfo.attackDamageReinforcementCount = int.Parse(hpLevelText.text);
-        GameManager.gameManager.playerInfo.speedReinforcementCount = int.Parse(speedLevelText.text);
-        GameManager.gameManager.playerInfo.statPoint = int.Parse(statPointText.text);
+        GameManager.gameManager.playerInfo.hpReinforcementCount = currentHpLevel;
+        GameManager.gameManager.playerInfo.attackDamageReinforcementCount = currentDamageLevel;
+        GameManager.gameManager.playerInfo.speedReinforcementCount = currentSpeedLevel;
+        GameManager.gameManager.playerInfo.statPoint = statPoint;
         JsonManager.SaveJson<PlayerInfo>(GameManager.gameManager.playerInfo, "SaveData");
 
 
@@ -77,10 +77,6 @@ public class StatManager : MonoBehaviour
 
         // 저장 버튼 비활성화
         saveButton.GetComponent<Button>().interactable = false;
-
-
-
-
     }
 
     // 버튼 활성화 토글
@@ -190,9 +186,7 @@ public class StatManager : MonoBehaviour
             statPointText.text = statPoint.ToString();
 
             saveBtnToggle();
-
         }
-
     }
 
 
@@ -228,11 +222,6 @@ public class StatManager : MonoBehaviour
             statPointText.text = statPoint.ToString();
 
             saveBtnToggle();
-
         }
-
     }
-
-
-
 }

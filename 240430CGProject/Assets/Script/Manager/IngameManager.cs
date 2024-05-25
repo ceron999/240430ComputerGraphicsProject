@@ -30,6 +30,7 @@ public class IngameManager : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log("1");
         recordText.text = "Record : " + nowRecord.ToString();
     }
 
@@ -46,7 +47,7 @@ public class IngameManager : MonoBehaviour
         {
             nowRecord = playerTransform.position.z;
             SetDifficultyUp();
-            recordText.text = "Record : \n" + (Mathf.FloorToInt(nowRecord)).ToString();
+            recordText.text = "Record : \n" + (Mathf.FloorToInt(nowRecord)).ToString() + "m";
         }
     }
     
@@ -56,7 +57,7 @@ public class IngameManager : MonoBehaviour
         isStageEnd = true;
         gameEndUIParent.SetActive(true);
 
-        endRecordText.text = "Record : " + (Mathf.FloorToInt(nowRecord)).ToString();
+        endRecordText.text = "Record : " + (Mathf.FloorToInt(nowRecord)).ToString() + "m";
 
         SetPlayerInfo();
     }
@@ -67,8 +68,11 @@ public class IngameManager : MonoBehaviour
 
         if(GameManager.gameManager.playerInfo.exp >= GameManager.gameManager.playerInfo.maxExp)
         {
-            GameManager.gameManager.playerInfo.exp -= GameManager.gameManager.playerInfo.maxExp;
-            GameManager.gameManager.playerInfo.level++;
+            while (GameManager.gameManager.playerInfo.exp >= GameManager.gameManager.playerInfo.maxExp)
+            {
+                GameManager.gameManager.playerInfo.exp -= GameManager.gameManager.playerInfo.maxExp;
+                GameManager.gameManager.playerInfo.level++;
+            }
         }
 
         SetRunningRecord();
@@ -128,4 +132,6 @@ public class IngameManager : MonoBehaviour
 
         SceneManager.LoadScene("StartScene");
     }
+
+
 }
