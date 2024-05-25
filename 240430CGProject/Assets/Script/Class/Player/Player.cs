@@ -61,7 +61,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(playerRigid.velocity);
+        //Debug.Log(playerRigid.velocity);
         MoveSide();
         Jump();
         Shoot();
@@ -84,7 +84,7 @@ public class Player : MonoBehaviour
     //플레이어가 일정 거리 이상을 달렸을 경우 이동속도를 증가시켜 난이도를 증가시킴
     public void SetPlayerSpeed()
     {
-        playerStatus.maxForwardSpeed += 200;
+        playerStatus.maxForwardSpeed += 50;
         StartCoroutine(UpdateMoveSpeed());
     }
 
@@ -107,7 +107,7 @@ public class Player : MonoBehaviour
             playerRigid.AddForce(new Vector3(0, 0, playerStatus.forwardspeed * 3));
             yield return null;
         }
-
+        Debug.Log("final : " + playerRigid.velocity);
         playerRigid.velocity = new Vector3(playerRigid.velocity.x, playerRigid.velocity.y, playerStatus.maxForwardSpeed);
     }
 
