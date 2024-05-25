@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class RankingManager : MonoBehaviour
 {
+    static GameManager gameManager;
     // 기록 불러오기 
     float[] runningRecordRanking;
 
@@ -28,6 +29,7 @@ public class RankingManager : MonoBehaviour
     {
         SceneManager.LoadScene("StartScene");
     }
+
 
    
 }

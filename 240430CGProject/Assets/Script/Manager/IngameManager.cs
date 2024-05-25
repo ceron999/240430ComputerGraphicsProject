@@ -23,6 +23,7 @@ public class IngameManager : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log("1");
         recordText.text = "Record : " + nowRecord.ToString();
     }
 
@@ -38,7 +39,7 @@ public class IngameManager : MonoBehaviour
         if (isStageStart)
         {
             nowRecord += Time.deltaTime * 10f;
-            recordText.text = "Record : \n" + (Mathf.FloorToInt(nowRecord)).ToString();
+            recordText.text = "Record : " + (Mathf.FloorToInt(nowRecord)).ToString() + "m";
         }
     }
     
@@ -48,7 +49,7 @@ public class IngameManager : MonoBehaviour
         isStageEnd = true;
         gameEndUIParent.SetActive(true);
 
-        endRecordText.text = "Record : " + (Mathf.FloorToInt(nowRecord)).ToString();
+        endRecordText.text = "Record : " + (Mathf.FloorToInt(nowRecord)).ToString() + "m";
 
         SetPlayerInfo();
     }
@@ -61,6 +62,7 @@ public class IngameManager : MonoBehaviour
         {
             GameManager.gameManager.playerInfo.exp -= GameManager.gameManager.playerInfo.maxExp;
             GameManager.gameManager.playerInfo.level++;
+            GameManager.gameManager.playerInfo.statPoint++;
         }
 
         SetRunningRecord();
@@ -111,4 +113,6 @@ public class IngameManager : MonoBehaviour
 
         SceneManager.LoadScene("StartScene");
     }
+
+
 }

@@ -8,6 +8,7 @@ public class PlayerInfo
     public int level;                       //현재 레벨
     public float exp;                       //현재 경험치
     public float maxExp;                    //현재 경험치가 maxExp를 넘어가면 다음 레벨로 업한다. 
+    public int statPoint;
 
     public float[] runningRecord;           //달리기 기록
 
@@ -20,6 +21,8 @@ public class PlayerInfo
         level = 0;
         exp = 0;
         maxExp = 1000;
+        // 임시로 설정해 둠
+        statPoint = 0;
 
         runningRecord = new float[3];
 
