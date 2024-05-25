@@ -3,9 +3,7 @@ using UnityEngine.UI;
 
 public class Monster : MonoBehaviour
 {
-    float baseSpeed = 1f;
     float speed;
-    float speedLimit = 3f;
     float baseHP = 1f; // = player default attack Dmg
     float hp;
     float baseCrushDmg = 1f; // = 1/10 * player default HP

@@ -115,6 +115,7 @@ public class IngameManager : MonoBehaviour
         if ((int)(nowRecord / 1000) <= nowDifficulty)
             return;
 
+        nowDifficulty++;
         player.SetPlayerSpeed();
     }
 

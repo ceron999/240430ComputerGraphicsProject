@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
     Image CoolTimeBarImage;
     [SerializeField]
     TextMeshProUGUI invincibilityText;
-    int invincibilityTime = 5;                              //무적 지속시간
+    float invincibilityTime = 5;                              //무적 지속시간
     float nowCoolTime = 0;                                  //무적 쿨타임 재기용 변수
     float invincibilityCoolTime = 30;                       //무적 쿨타임;
     bool isInvincibility = false;                           //무적 변수
@@ -61,6 +61,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(playerRigid.velocity);
         MoveSide();
         Jump();
         Shoot();
@@ -74,16 +75,17 @@ public class Player : MonoBehaviour
         playerStatus.hp += 0.1f * GameManager.gameManager.playerInfo.hpReinforcementCount;
 
         playerStatus.maxForwardSpeed += 0.1f * GameManager.gameManager.playerInfo.speedReinforcementCount;
-        playerStatus.maxsideSpeed += 0.1f * GameManager.gameManager.playerInfo.speedReinforcementCount;
 
         playerStatus.attackDamage += 0.1f * GameManager.gameManager.playerInfo.attackDamageReinforcementCount;
 
         maxHp = playerStatus.hp;
     }
 
+    //플레이어가 일정 거리 이상을 달렸을 경우 이동속도를 증가시켜 난이도를 증가시킴
     public void SetPlayerSpeed()
     {
-        playerStatus.maxForwardSpeed += 100;
+        playerStatus.maxForwardSpeed += 200;
+        StartCoroutine(UpdateMoveSpeed());
     }
 
     #region Move Functions
@@ -93,12 +95,25 @@ public class Player : MonoBehaviour
         StartCoroutine(StartPlayerMoveCoroutine());
     }
 
+    //플레이어가 게임을 시작하고 1초 뒤에 이동 속도가 증가하도록 하는 함수
     IEnumerator StartPlayerMoveCoroutine()
     {
         yield return new WaitForSeconds(1f);
         ingameManager.isStageStart = true;                    //stage가 시작되었으므로 좌우로 이동 가능
         playerAnimator.SetBool("isRun", true);
 
+        while (playerRigid.velocity.z <= playerStatus.maxForwardSpeed)
+        {
+            playerRigid.AddForce(new Vector3(0, 0, playerStatus.forwardspeed * 3));
+            yield return null;
+        }
+
+        playerRigid.velocity = new Vector3(playerRigid.velocity.x, playerRigid.velocity.y, playerStatus.maxForwardSpeed);
+    }
+
+    //플레이어가 이동 거리에 따라 속도를 갱신하기 위해 만든 함수
+    IEnumerator UpdateMoveSpeed()
+    {
         while (playerRigid.velocity.z <= playerStatus.maxForwardSpeed)
         {
             playerRigid.AddForce(new Vector3(0, 0, playerStatus.forwardspeed * 3));
@@ -174,7 +189,7 @@ public class Player : MonoBehaviour
         isJumping = true;
         playerAnimator.Play("Jump_HG01_Anim");
 
-        while (this.transform.position.y <= 7)
+        while (this.transform.position.y <= 6)
         {
             playerRigid.AddForce(new Vector3(0, jumpPower, 0), ForceMode.Impulse);
             yield return null;
@@ -189,9 +204,9 @@ public class Player : MonoBehaviour
 
         isJumping = false;
     }
-
     #endregion
 
+    #region Action Functions(Shoot, invincibility , GetDamaged, DIe)
     void Shoot()
     {
         if (isShooting)
@@ -245,7 +260,7 @@ public class Player : MonoBehaviour
     IEnumerator SetCoolTimeBarCoroutine()
     {
         yield return new WaitForSeconds(1);
-        invincibilityTime += GameManager.gameManager.playerInfo.speedReinforcementCount;
+        invincibilityTime += (float)GameManager.gameManager.playerInfo.speedReinforcementCount * 0.1f;
 
         while (!ingameManager.isStageEnd)
         {
@@ -306,4 +321,5 @@ public class Player : MonoBehaviour
 
         ingameManager.GameEnd();
     }
+    #endregion
 }

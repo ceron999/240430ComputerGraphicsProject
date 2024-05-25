@@ -2075,16 +2075,28 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 826321656}
     - target: {fileID: 2227612529552096990, guid: f0aa068246263dd4ba7a61b712d2c765, type: 3}
+      propertyPath: playerStatus.hp
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2227612529552096990, guid: f0aa068246263dd4ba7a61b712d2c765, type: 3}
       propertyPath: invincibilityText
       value: 
       objectReference: {fileID: 1203609053}
     - target: {fileID: 2227612529552096990, guid: f0aa068246263dd4ba7a61b712d2c765, type: 3}
+      propertyPath: playerStatus.sidespeed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2227612529552096990, guid: f0aa068246263dd4ba7a61b712d2c765, type: 3}
       propertyPath: playerStatus.forwardspeed
-      value: 100
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2227612529552096990, guid: f0aa068246263dd4ba7a61b712d2c765, type: 3}
+      propertyPath: playerStatus.maxsideSpeed
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2227612529552096990, guid: f0aa068246263dd4ba7a61b712d2c765, type: 3}
       propertyPath: playerStatus.maxForwardSpeed
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4584356238537087537, guid: f0aa068246263dd4ba7a61b712d2c765, type: 3}
       propertyPath: m_Enabled
