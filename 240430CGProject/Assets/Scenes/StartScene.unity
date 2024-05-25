@@ -1768,7 +1768,7 @@ MonoBehaviour:
     level: 1
     exp: 0
     maxExp: 1000
-    statPoint: 15
+    statPoint: 0
     runningRecord:
     - 3
     - 2
