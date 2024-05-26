@@ -264,6 +264,13 @@ public class Player : MonoBehaviour
 
         while (!ingameManager.isStageEnd)
         {
+            if (Time.timeScale == 0)
+                while(Time.timeScale == 0)
+                {
+                    yield return null;
+                }
+
+
             //무적 상태가 아닐때 쿨타임이 돈다.
             if (!isInvincibility)
             {
