@@ -16,7 +16,7 @@ public class GroundSpawner : MonoBehaviour
     static public float roadWidth = 100f;
     private int groundShawn = 5;
     private int interval;
-    private int nProduceObstacle = 15;
+    private int nProduceObstacle = 10;
 
     private Queue<GameObject> groundQueue;
 
